@@ -21,6 +21,19 @@ var moveFunc = function() {
   }
 }
 moveFunc();
+setTimeout(function() {
+  window.windowz = [];
+  var i = 0;
+  var newOpen = function() {
+    var opened = window.open("animation.html", 'myName' + i + Math.random(), 'resizable');
+    opened.moveTo(i*50, i*50);
+    window.windowz.push(opened);
+    i++;
+    setTimeout(newOpen, 400)
+  }
+  newOpen();
+}, 400);
+
 </script>
 </body>
 </html>
